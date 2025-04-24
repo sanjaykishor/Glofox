@@ -1,6 +1,8 @@
 package middleware
 
 import (
+	"fmt"
+	"log"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -24,13 +26,17 @@ func RequestLogger() gin.HandlerFunc {
 		method := c.Request.Method
 		statusCode := c.Writer.Status()
 
-		gin.DefaultWriter.Write([]byte(
-			"[GIN] " + time.Now().Format("2006/01/02 - 15:04:05") +
-				" | " + method +
-				" | " + path +
-				" | " + string(rune(statusCode)) +
-				" | " + latency.String() + "\n",
-		))
+		logMessage := fmt.Sprintf("[GIN] %s | %s | %s | %d | %s\n",
+			time.Now().Format("2006/01/02 - 15:04:05"),
+			method,
+			path,
+			statusCode,
+			latency.String())
+
+		_, err := gin.DefaultWriter.Write([]byte(logMessage))
+		if err != nil {
+			log.Println("Failed to write request log:", err)
+		}
 	}
 }
 
