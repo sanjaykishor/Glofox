@@ -36,8 +36,6 @@ docker:
 	@docker build -t glofox:$(VERSION) .
 	@echo "Docker image built!"
 
-build-all: build-linux build-mac build-windows
-
 build-linux:
 	@echo "Building for Linux..."
 	@GOOS=linux GOARCH=amd64 go build $(GOFLAGS) -o $(BUILD_DIR)/$(BINARY_NAME)-linux $(MAIN_PATH)
@@ -49,6 +47,8 @@ build-mac:
 build-windows:
 	@echo "Building for Windows..."
 	@GOOS=windows GOARCH=amd64 go build $(GOFLAGS) -o $(BUILD_DIR)/$(BINARY_NAME)-windows.exe $(MAIN_PATH)
+
+build-all: build-linux build-mac build-windows
 
 help:
 	@echo "Glofox - Fitness Studio Management API"
