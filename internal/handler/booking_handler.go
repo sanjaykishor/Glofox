@@ -5,6 +5,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/sanjaykishor/Glofox/internal/service"
+	"github.com/sanjaykishor/Glofox/internal/validation"
 )
 
 type BookingHandler struct {
@@ -31,36 +32,23 @@ func (h *BookingHandler) CreateBooking(c *gin.Context) {
 	var request service.CreateBookingRequest
 
 	if err := c.ShouldBindJSON(&request); err != nil {
-		c.JSON(http.StatusBadRequest, Response{
-			Success: false,
-			Error:   "Invalid request data: " + err.Error(),
-		})
+		validation.ErrorResponse(c, http.StatusBadRequest, err)
 		return
 	}
 
 	booking, err := h.bookingService.CreateBooking(&request)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, Response{
-			Success: false,
-			Error:   err.Error(),
-		})
+		validation.ServiceErrorResponse(c, err)
 		return
 	}
 
-	c.JSON(http.StatusCreated, Response{
-		Success: true,
-		Message: "Booking created successfully",
-		Data:    booking,
-	})
+	validation.SuccessResponse(c, http.StatusCreated, "Booking created successfully", booking)
 }
 
 // GetAllBookings returns all bookings
 func (h *BookingHandler) GetAllBookings(c *gin.Context) {
 	bookings := h.bookingService.GetAllBookings()
-	c.JSON(http.StatusOK, Response{
-		Success: true,
-		Data:    bookings,
-	})
+	validation.SuccessResponse(c, http.StatusOK, "", bookings)
 }
 
 // GetBookingByID retrieves a booking by its ID
@@ -68,17 +56,11 @@ func (h *BookingHandler) GetBookingByID(c *gin.Context) {
 	id := c.Param("id")
 	booking, err := h.bookingService.GetBookingByID(id)
 	if err != nil {
-		c.JSON(http.StatusNotFound, Response{
-			Success: false,
-			Error:   err.Error(),
-		})
+		validation.ServiceErrorResponse(c, err)
 		return
 	}
 
-	c.JSON(http.StatusOK, Response{
-		Success: true,
-		Data:    booking,
-	})
+	validation.SuccessResponse(c, http.StatusOK, "", booking)
 }
 
 // GetBookingsByDate retrieves all bookings for a specific date
@@ -87,15 +69,9 @@ func (h *BookingHandler) GetBookingsByDate(c *gin.Context) {
 	bookings, err := h.bookingService.GetBookingsByDate(date)
 
 	if err != nil {
-		c.JSON(http.StatusBadRequest, Response{
-			Success: false,
-			Error:   err.Error(),
-		})
+		validation.ServiceErrorResponse(c, err)
 		return
 	}
 
-	c.JSON(http.StatusOK, Response{
-		Success: true,
-		Data:    bookings,
-	})
+	validation.SuccessResponse(c, http.StatusOK, "", bookings)
 }

@@ -11,6 +11,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/sanjaykishor/Glofox/internal/repository"
 	"github.com/sanjaykishor/Glofox/internal/service"
+	"github.com/sanjaykishor/Glofox/internal/validation"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -56,7 +57,7 @@ func TestCreateBooking(t *testing.T) {
 
 	assert.Equal(t, http.StatusCreated, w.Code, "Should return status code 201")
 
-	var response Response
+	var response validation.Response
 	err := json.Unmarshal(w.Body.Bytes(), &response)
 	assert.NoError(t, err, "Should parse response JSON without error")
 	assert.True(t, response.Success, "Response success should be true")
@@ -77,6 +78,7 @@ func TestCreateBooking(t *testing.T) {
 	err = json.Unmarshal(w.Body.Bytes(), &response)
 	assert.NoError(t, err, "Should parse response JSON without error")
 	assert.False(t, response.Success, "Response success should be false")
+	assert.Contains(t, response.Error, "date is required", "Error message should indicate missing date field")
 }
 
 func TestGetAllBookings(t *testing.T) {
@@ -97,7 +99,7 @@ func TestGetAllBookings(t *testing.T) {
 
 	assert.Equal(t, http.StatusOK, w.Code, "Should return status code 200")
 
-	var response Response
+	var response validation.Response
 	err := json.Unmarshal(w.Body.Bytes(), &response)
 	assert.NoError(t, err, "Should parse response JSON without error")
 	assert.True(t, response.Success, "Response success should be true")
@@ -125,7 +127,7 @@ func TestGetBookingByID(t *testing.T) {
 
 	assert.Equal(t, http.StatusOK, w.Code, "Should return status code 200")
 
-	var response Response
+	var response validation.Response
 	err := json.Unmarshal(w.Body.Bytes(), &response)
 	assert.NoError(t, err, "Should parse response JSON without error")
 	assert.True(t, response.Success, "Response success should be true")

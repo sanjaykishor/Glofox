@@ -294,6 +294,7 @@ Glofox/
 │   ├── middleware/       # HTTP middleware
 │   ├── repository/       # Data access layer
 │   ├── router/           # HTTP router setup
+│   ├── validation/       # Validation logic
 │   └── service/          # Business logic
 ├── bin/                  # Compiled binaries
 ├── Dockerfile            # Docker build configuration

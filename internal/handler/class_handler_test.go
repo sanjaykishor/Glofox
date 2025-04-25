@@ -11,6 +11,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/sanjaykishor/Glofox/internal/repository"
 	"github.com/sanjaykishor/Glofox/internal/service"
+	"github.com/sanjaykishor/Glofox/internal/validation"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -50,7 +51,7 @@ func TestCreateClass(t *testing.T) {
 
 	assert.Equal(t, http.StatusCreated, w.Code, "Should return status code 201")
 
-	var response Response
+	var response validation.Response
 	err := json.Unmarshal(w.Body.Bytes(), &response)
 	assert.NoError(t, err, "Should parse response JSON without error")
 	assert.True(t, response.Success, "Response success should be true")
@@ -72,6 +73,9 @@ func TestCreateClass(t *testing.T) {
 	err = json.Unmarshal(w.Body.Bytes(), &response)
 	assert.NoError(t, err, "Should parse response JSON without error")
 	assert.False(t, response.Success, "Response success should be false")
+	assert.Contains(t, response.Error, "start_date is required", "Error message should indicate missing start_date field")
+	assert.Contains(t, response.Error, "end_date is required", "Error message should indicate missing end_date field")
+	assert.Contains(t, response.Error, "capacity is required", "Error message should indicate missing capacity field")
 
 	// Invalid date format
 	invalidDateRequest := map[string]any{
@@ -89,6 +93,9 @@ func TestCreateClass(t *testing.T) {
 	router.ServeHTTP(w, req)
 
 	assert.Equal(t, http.StatusBadRequest, w.Code, "Should return status code 400")
+
+	err = json.Unmarshal(w.Body.Bytes(), &response)
+	assert.NoError(t, err, "Should parse response JSON without error")
 	assert.False(t, response.Success, "Response success should be false")
 }
 
@@ -110,7 +117,7 @@ func TestGetAllClasses(t *testing.T) {
 
 	assert.Equal(t, http.StatusOK, w.Code, "Should return status code 200")
 
-	var response Response
+	var response validation.Response
 	err := json.Unmarshal(w.Body.Bytes(), &response)
 	assert.NoError(t, err, "Should parse response JSON without error")
 	assert.True(t, response.Success, "Response success should be true")
@@ -139,7 +146,7 @@ func TestGetClassByID(t *testing.T) {
 
 	assert.Equal(t, http.StatusOK, w.Code, "Should return status code 200")
 
-	var response Response
+	var response validation.Response
 	err := json.Unmarshal(w.Body.Bytes(), &response)
 	assert.NoError(t, err, "Should parse response JSON without error")
 	assert.True(t, response.Success, "Response success should be true")
