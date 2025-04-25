@@ -83,3 +83,18 @@ func (r *BookingRepository) GetBookingsByDate(date time.Time) []*Booking {
 
 	return bookings
 }
+
+// GetByClassID retrieves all bookings for a specific class
+func (r *BookingRepository) GetByClassID(classID string) ([]*Booking, error) {
+	r.mutex.RLock()
+	defer r.mutex.RUnlock()
+
+	bookings := make([]*Booking, 0)
+	for _, booking := range r.bookings {
+		if booking.ClassID == classID {
+			bookings = append(bookings, booking)
+		}
+	}
+
+	return bookings, nil
+}
