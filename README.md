@@ -77,8 +77,8 @@ http://localhost:8080/api/v1
 ```json
 {
     "name": "Yoga Class",
-    "start_date": "2023-12-01",
-    "end_date": "2023-12-20",
+    "start_date": "2025-04-25",
+    "end_date": "2025-04-26",
     "capacity": 15
 }
 ```
@@ -90,8 +90,8 @@ http://localhost:8080/api/v1
     "data": {
         "id": "c0e3bcde-1d22-4c7b-a788-15c8f815b35d",
         "name": "Yoga Class",
-        "start_date": "2023-12-01T00:00:00Z",
-        "end_date": "2023-12-20T00:00:00Z",
+        "start_date": "2025-04-25T00:00:00Z",
+        "end_date": "2025-04-26T00:00:00Z",
         "capacity": 15
     }
 }
@@ -115,15 +115,15 @@ http://localhost:8080/api/v1
         {
             "id": "c0e3bcde-1d22-4c7b-a788-15c8f815b35d",
             "name": "Yoga Class",
-            "start_date": "2023-12-01T00:00:00Z",
-            "end_date": "2023-12-20T00:00:00Z",
+            "start_date": "2025-04-25T00:00:00Z",
+            "end_date": "2025-04-26T00:00:00Z",
             "capacity": 15
         },
         {
             "id": "f8a9d724-5c31-4b9d-8c0e-7d45d0aab123",
             "name": "HIIT Training",
-            "start_date": "2023-12-05T00:00:00Z",
-            "end_date": "2023-12-25T00:00:00Z", 
+            "start_date": "2025-04-26T00:00:00Z",
+            "end_date": "2025-04-27T00:00:00Z", 
             "capacity": 10
         }
     ]
@@ -140,8 +140,8 @@ http://localhost:8080/api/v1
     "data": {
         "id": "c0e3bcde-1d22-4c7b-a788-15c8f815b35d",
         "name": "Yoga Class",
-        "start_date": "2023-12-01T00:00:00Z",
-        "end_date": "2023-12-20T00:00:00Z",
+        "start_date": "2025-04-25T00:00:00Z",
+        "end_date": "2025-04-26T00:00:00Z",
         "capacity": 15
     }
 }
@@ -163,7 +163,7 @@ http://localhost:8080/api/v1
 ```json
 {
     "name": "USER A",
-    "date": "2023-12-15",
+    "date": "2025-04-25",
     "class_id": "c0e3bcde-1d22-4c7b-a788-15c8f815b35d"
 }
 ```
@@ -176,8 +176,8 @@ http://localhost:8080/api/v1
         "id": "d7a8e931-2b41-5f6c-9d0e-8f12a3b45c67",
         "member_name": "USER A",
         "class_id": "c0e3bcde-1d22-4c7b-a788-15c8f815b35d",
-        "date": "2023-12-15T00:00:00Z",
-        "created_at": "2023-11-20T14:30:45Z"
+        "date": "2025-04-25T00:00:00Z",
+        "created_at": "2025-04-24T14:30:45Z"
     }
 }
 ```
@@ -201,15 +201,15 @@ http://localhost:8080/api/v1
             "id": "d7a8e931-2b41-5f6c-9d0e-8f12a3b45c67",
             "member_name": "USER A",
             "class_id": "c0e3bcde-1d22-4c7b-a788-15c8f815b35d",
-            "date": "2023-12-15T00:00:00Z",
-            "created_at": "2023-11-20T14:30:45Z"
+            "date": "2025-04-25T00:00:00Z",
+            "created_at": "2025-04-24T14:30:45Z"
         },
         {
             "id": "e8b9f042-3c52-6d7e-0e1f-9g23b4c56d78",
             "member_name": "Jane Smith",
             "class_id": "f8a9d724-5c31-4b9d-8c0e-7d45d0aab123",
-            "date": "2023-12-10T00:00:00Z",
-            "created_at": "2023-11-20T15:45:12Z"
+            "date": "2025-04-25T00:00:00Z",
+            "created_at": "2025-04-24T15:45:12Z"
         }
     ]
 }
@@ -226,8 +226,8 @@ http://localhost:8080/api/v1
         "id": "d7a8e931-2b41-5f6c-9d0e-8f12a3b45c67",
         "member_name": "USER A",
         "class_id": "c0e3bcde-1d22-4c7b-a788-15c8f815b35d",
-        "date": "2023-12-15T00:00:00Z",
-        "created_at": "2023-11-20T14:30:45Z"
+        "date": "2025-04-25T00:00:00Z",
+        "created_at": "2025-04-24T14:30:45Z"
     }
 }
 ```
@@ -242,7 +242,7 @@ http://localhost:8080/api/v1
 #### Get Bookings by Date
 - **URL**: `/bookings/date/:date`
 - **Method**: `GET`
-- **URL Example**: `/bookings/date/2023-12-15`
+- **URL Example**: `/bookings/date/2025-04-15`
 - **Success Response** (200 OK):
 ```json
 {
@@ -252,15 +252,15 @@ http://localhost:8080/api/v1
             "id": "d7a8e931-2b41-5f6c-9d0e-8f12a3b45c67",
             "member_name": "USER A",
             "class_id": "c0e3bcde-1d22-4c7b-a788-15c8f815b35d",
-            "date": "2023-12-15T00:00:00Z",
-            "created_at": "2023-11-20T14:30:45Z"
+            "date": "2025-04-25T00:00:00Z",
+            "created_at": "2025-04-24T14:30:45Z"
         },
         {
             "id": "f9c0e143-4d65-7g86-1h2i-3j45k6l78m90",
             "member_name": "USER B",
             "class_id": "a1b2c3d4-5e6f-7g8h-9i0j-1k2l3m4n5o6p",
-            "date": "2023-12-15T00:00:00Z",
-            "created_at": "2023-11-21T09:15:30Z"
+            "date": "2025-04-25T00:00:00Z",
+            "created_at": "2025-04-24T09:15:30Z"
         }
     ]
 }
