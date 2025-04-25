@@ -32,8 +32,5 @@ jobs:
         uses: golangci/golangci-lint-action@v3
         with:
           version: latest
-          args: --timeout=5m
-          linters-settings: |
-            ignored-files: |
-              - "*_test.go"
+          args: --timeout=5m --skip-files=".*_test.go$"
 
