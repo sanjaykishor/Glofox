@@ -27,10 +27,10 @@ func (h *ClassHandler) RegisterRoutes(router gin.IRouter) {
 }
 
 type Response struct {
-	Success bool        `json:"success"`
-	Message string      `json:"message,omitempty"`
-	Data    interface{} `json:"data,omitempty"`
-	Error   string      `json:"error,omitempty"`
+	Success bool   `json:"success"`
+	Message string `json:"message,omitempty"`
+	Data    any    `json:"data,omitempty"`
+	Error   string `json:"error,omitempty"`
 }
 
 func (h *ClassHandler) CreateClass(c *gin.Context) {
