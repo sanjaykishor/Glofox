@@ -16,8 +16,7 @@ func Setup(
 	setupAPIRoutes(router, classHandler, bookingHandler)
 
 	return router
-		// Register class routes
-	}
+}
 
 // setupAPIRoutes configures all the API routes for the application
 func setupAPIRoutes(
