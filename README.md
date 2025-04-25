@@ -17,7 +17,7 @@ Glofox is a SaaS platform for boutique fitness studios, gyms, and wellness cente
 ## Getting Started
 
 ### Prerequisites
-- Go 1.21 or higher
+- Go 1.23 or higher
 - Git
 
 ### Installation
